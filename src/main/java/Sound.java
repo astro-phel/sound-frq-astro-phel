@@ -1,6 +1,5 @@
 import java.util.*;
-public class Sound
-{
+public class Sound{
   /** the array of values in this sound; guaranteed not to be null */
   int[] samples;
 
@@ -13,10 +12,14 @@ public class Sound
    *         Precondition: limit >= 0
    *  @return the number of values in this sound that this method changed
    */
-  public int limitAmplitude(int limit)
-  {  
+  public int limitAmplitude(int limit){  
     /* to be implemented in part (a) */
-    return 0;
+    int count = 0;
+    for(int i = 0; i < samples.length; i++)
+      if(samples[i] > limit || samples[i])
+        samples[i] = limit;
+    count++;
+    return count 0;
   }
 
 
@@ -26,8 +29,12 @@ public class Sound
    *  Precondition: samples contains at least one nonzero value
    *  Postcondition: the length of samples reflects the removal of starting silence
    */
-  public void trimSilenceFromBeginning()
-  {
+  public void trimSilenceFromBeginning(){
     /* to be implemented in part (b) */
+    int n = 0;
+    while(samples[n] == 0)
+      n++;
+    for(int i = 0; i < samples.length; i++)
+      samples[i] = samples[i+n];
   }
 }
